@@ -4,7 +4,12 @@
 #include <string.h>
 #include <arpa/inet.h>
 
-uint32_t returnAdd(char *fname){
+uint32_t returnValue(char *fname);
+void returnAdd(int a, int b);
+
+
+// 출력 : 1000(0x3e8) + 500(0x1f4) = 1500(0x5dc)
+uint32_t returnValue(char *fname){
 	FILE *fp;
 	u_int32_t buffer[10];
 	u_int32_t a,b;
@@ -19,6 +24,10 @@ uint32_t returnAdd(char *fname){
 	return b;
 }
 
+void returnAdd(int a, int b){
+	printf("%d(0x%x) + %d(0x%x) = %d(0x%x)\n", a, a, b, b, a + b, a + b);
+}
+
 int main(int argc, char *argv[]){
 	if (argc != 3) {
         fprintf(stderr, "Usage: %s <file1> <file2>\n", argv[0]);
@@ -28,7 +37,7 @@ int main(int argc, char *argv[]){
     char *path1 = argv[1];
     char *path2 = argv[2];
 
-	printf("%d",returnAdd(path1)+returnAdd(path2));
+	returnAdd(returnValue(path1),returnValue(path2));
 	return 0;
 }
 
