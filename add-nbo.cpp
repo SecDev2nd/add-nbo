@@ -19,11 +19,16 @@ uint32_t returnAdd(char *fname){
 	return b;
 }
 
-int main(){
-	char path[] = "../thousand.bin";
-	char path2[] = "../five-hundred.bin";
+int main(int argc, char *argv[]){
+	if (argc != 3) {
+        fprintf(stderr, "Usage: %s <file1> <file2>\n", argv[0]);
+        return EXIT_FAILURE;
+    }
 
-	printf("%d",returnAdd(path)+returnAdd(path2));
+    char *path1 = argv[1];
+    char *path2 = argv[2];
+
+	printf("%d",returnAdd(path1)+returnAdd(path2));
 	return 0;
 }
 
